@@ -1,0 +1,116 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #050505;
+    color: white;
+    /* // background-color: #4f5d75; */
+    font-size: 0.8em;
+    margin: 0;
+}
+
+h1 {
+    display:none;
+}
+
+.container-fluid {
+    height: 100vh;
+}
+
+#top-container {
+    padding-top: 45px;
+    height: 65%;
+}
+
+#team-blue, #team-red {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2.8em;
+}
+
+#main-timer {
+    background-color: #050505;
+    font-size: 3.8em;
+    font-weight: 400;
+    border-radius: 12px;
+    border: 2px solid white;
+}
+
+#sub-timer {
+    background-color: rgb(212, 212, 212);
+    font-size: 4.5em;
+    font-weight: 500;
+    border-radius: 12px;
+    border: 4px solid white;
+    color: #050505;
+}
+
+#team-blue-score-display, #team-red-score-display {
+    height: 60%;
+    width: 50%;
+    background-color: rgb(212, 212, 212);
+    border-radius: 16px;
+    color: #050505;
+    font-size: 12em;
+    font-weight: bold;
+}
+
+#team-blue-score-display {
+    border: 8px solid blue;
+}
+
+#team-red-score-display {
+    border: 8px solid rgb(177, 20, 20);
+}
+
+.foul {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    margin: 4px 0px;
+    border: 2px solid white;
+}
+
+.foul.fouls-empty {
+        background-color: #050505;
+    }
+
+.foul.fouls-filled {
+    background-color: #fff;
+}
+
+#team-blue-fouls-container, #team-red-fouls-container {
+    width: 50%;
+}
+
+#text-display {
+    border-radius: 16px;
+    border: 2px solid white;
+    height: calc((30 * 100vh) / 100);
+    position: relative;
+}
+
+#theme {
+    margin-top: calc((((30 * 100vh) / 100) / 2)  - 18px);
+    width: 100%;
+    font-size: 2.7em;
+}
+
+#wayof, #type, #players {
+    position: absolute;
+    font-size: 2.4em;
+}
+
+#players {
+    top: 16px;
+    right: 38px;
+}
+
+#type {
+    top: 16px;
+    left: 38px;
+}
+
+#wayof {
+    bottom: 12px;
+    text-align: center;
+    width: 100%;
+}

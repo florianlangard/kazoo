@@ -1,0 +1,195 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #9b9b9b;
+    /* // background-color: #4f5d75; */
+    font-size: 0.8em;
+}
+
+label {
+    font-weight: bold;
+}
+
+p {
+    margin: 0;
+}
+
+#wayof {
+    height: 2.3em;
+}
+
+#main-timer-render, #sub-timer-render {
+    font-weight: 400;
+    font-size: 4em;
+}
+
+#blue-score-display, #red-score-display {
+    width: 55%;
+    height: 280px;
+    background-color: white;
+    border-radius: 24px;
+}
+
+#team-blue-display, #team-red-display {
+    height: 10%;
+}
+
+#blue-score-display {
+    border: 10px solid blue;
+}
+
+#red-score-display {
+    border: 10px solid rgb(177, 20, 20);
+}
+
+#blue-score, #red-score {
+    height: 75%;
+    font-size: 8em;
+    font-weight: bold;
+}
+
+#text-display {
+    height: 240px;
+    background-color: #52525e;
+    border-radius: 24px;
+    border: 4px solid black;
+    position: relative;
+    color: black;
+}
+
+#theme-display {
+    font-weight: 500;
+    font-size: 2em;
+    text-align: center;
+    padding: 0 8px;
+}
+
+#wayof-display {
+    position: absolute;
+    bottom: 12px;
+    font-weight: 500;
+    font-size: 2em;
+}
+
+#type-display {
+    position: absolute;
+    top : 12px;
+    left: 38px;
+    font-size: 2em;
+}
+
+#players-display {
+    position: absolute;
+    top: 12px;
+    right: 38px;
+    font-size: 2em;
+}
+
+
+.team-counter {
+    width: 95%;
+    height: 160px;
+    background-color: #9b9b9b;
+    border-radius: 24px;
+    border: 10px solid black;
+}
+
+/* .team-counter .team2-counter {
+        border: 10px solid rgb(177, 20, 20);
+    }
+
+.team-counter .team1-counter {
+        border: 10px solid rgb(39, 39, 243);
+    } */
+
+.score-display {
+    font-size: 4em;
+    margin-bottom: 0;
+}
+
+.fouls {
+    width: 42px;
+    height: 42px;
+    margin: 0 2px;
+    border-radius: 50%;
+    border: 2px solid rgb(230, 229, 229);
+}
+
+.fouls.fouls-filled {
+    background-color: #fff;
+  }
+
+  .fouls.fouls-empty {
+    background-color: #9b9b9b;
+  }
+
+.theme-container {
+    height: 180px;
+    background-color: grey;
+    border-radius: 24px;
+    border: 4px solid black;
+    position: relative;
+    font-size: 1rem;
+}
+
+#display-style {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 5px;
+    left: 0;
+}
+
+.inline-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inline-container p {
+    margin: 0;
+  }
+
+.btn {
+    min-width: 32px;
+    font-size: 0.8em;
+}
+
+.btn-container {
+    justify-content: center;
+    /* // margin-bottom: 16px; */
+}
+
+#team-blue-display {
+    position: relative;
+    top: 0px;
+}
+
+.btn-container.score-btn-container {
+    position: absolute;
+    justify-content: space-between;
+    margin: 0;
+    bottom: 1px;
+}
+
+#sub-timer, #main-timer {
+    font-size: 2.5em;
+}
+
+#timer-buttons button {
+    font-size: 0.8em;
+}
+
+button {
+    margin-right: 4px;
+    margin-left: 4px;
+    height: 28px;
+}
+
+h1 {
+    margin: auto;
+    text-align: center;
+    height: 50px;
+}
+
+input {
+    height: 28px;
+}

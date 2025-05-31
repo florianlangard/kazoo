@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<title>Kazoo - Control Panel</title>
+</head>
+
+<body>
+
+<nav class="navbar bg-body-tertiary">
+	<div class="container-fluid">
+		<a class="navbar-brand">Kazoo <i class="fa-solid fa-wind"></i></a>
+		<div class="d-flex">
+			<button id="resetStorage" class="btn btn-danger">Remise à zéro <i class="fa-solid fa-ban"></i></button>
+			<button class="btn btn-outline-primary" id="openDisplay">Ouvrir Affichage <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row align-items-start">
+		<div class="col-4 mt-5 text-start">
+			<form action="" id="team-blue-form" class="team-name">
+				<label for="team-blue" class="form-label">Team Blue</label>
+				<div class="row">
+					<div class="col-9">
+						<input type="text" name="team-blue" id="team-blue" class="form-control mb-1" list="team-blue-list">
+						<datalist id="team-blue-list">
+							<option value="Luxembourg">
+						</datalist>
+					</div>
+					<div class="col-3">
+						<button id="team-blue-button" class="btn btn-success me-0 mb-3">Save <i class="fa-solid fa-check"></i></button>
+					</div>
+				</div>
+			</form>
+
+			<div class="container d-flex justify-content-center align-items-center mb-3">
+				<div id="blue-score-display" class="d-flex-col justify-content-center align-items-center">
+					<p id="team-blue-display" class="text-center">-</p>
+					<div id="blue-score" class="d-flex justify-content-center align-items-center">0</div>
+					<div class="container btn-container d-flex justify-content-center align-items-center">
+						<button id="blue-score-minus" class="btn btn-danger col-6">-</button>
+						<button id="blue-score-plus" class="btn btn-success col-6">+</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-flex justify-content-center align-items-center">
+					<button id="blue-foul-minus" class="btn btn-danger">-</button>
+					<div class="fouls blue-foul col-2 fouls-empty"></div>
+					<div class="fouls blue-foul col-2 fouls-empty"></div>
+					<div class="fouls blue-foul col-2 fouls-empty"></div>
+					<button id="blue-foul-plus" class="btn btn-success">+</button>
+			</div>
+		</div>
+
+		<div class="col-4 mt-5">
+			<div class="container align-items-center mb-1 border-top">
+				<div class="row">
+					<div class="col-3 d-flex text-center align-items-center justify-content-center">
+						<button id="main-timer-stop" class="btn btn-danger">stop <i class="fa-solid fa-pause"></i></button>
+					</div>
+					<div class="col-6 text-center" id="main-timer-render">
+						00:00
+					</div>
+					<div class="col-3 d-flex text-center align-items-center justify-content-center">
+						<button id="main-timer-start" class="btn btn-success">start <i class="fa-solid fa-play"></i></button>
+					</div>
+				</div>
+			</div>
+
+			<form action="" id="main-timer-form" class="timer-control main-timer">
+				<div class="d-flex mb-3 justify-content-start border-bottom">
+					<div class="row justify-content-center">
+						<div class="col-4 mb-2 text-center">
+							<label for="main-mins" class="form-label">Min</label>
+							<input type="number" min="0" class="form-control" id="main-mins" list="main-mins-list">
+							<datalist id="main-mins-list">
+								<option value="45">
+							</datalist>
+						</div>
+						<div class="col-4 text-center">
+							<label for="main-secs" class="form-label">Sec</label>
+							<input type="number" min="0" class="form-control" id="main-secs" list="secs-list">
+							<datalist id="secs-list">
+								<option value="30">
+							</datalist>
+						</div>
+						<div class="row">
+							<div class="col-12 d-flex text-center align-items-end justify-content-center">
+								<button id="main-timer-button" class="btn btn-success me-0">Save <i class="fa-solid fa-check"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+
+			<div class="container align-items-center mb-1 border-top">
+				<div class="row">
+					<div class="col-3 d-flex text-center align-items-center justify-content-center">
+						<button id="sub-timer-stop" class="btn btn-danger">stop <i class="fa-solid fa-pause"></i></button>
+					</div>
+					<div class="col-6 text-center" id="sub-timer-render">
+						00:00
+					</div>
+					<div class="col-3 d-flex text-center align-items-center justify-content-center">
+						<button id="sub-timer-start" class="btn btn-success">start <i class="fa-solid fa-play"></i></button>
+					</div>
+				</div>
+			</div>
+
+			<form action="" id="sub-timer-form" class="timer-control sub-timer">
+				<div class="d-flex mb-3 justify-content-start border-bottom">
+					<div class="row justify-content-center">
+						<div class="col-4 mb-2 text-center">
+							<label for="sub-mins" class="form-label">Min</label>
+							<input type="number" min="0" class="form-control" id="sub-mins" list="sub-mins-list">
+							<datalist id="sub-mins-list">
+								<option value="1">
+								<option value="2">
+								<option value="3">
+								<option value="4">
+								<option value="5">
+								<option value="7">
+								<option value="9">
+								<option value="10">
+								<option value="12">
+							</datalist>
+						</div>
+						<div class="col-4 text-center">
+							<label for="sub-secs" class="form-label">Sec</label>
+							<input type="number" min="0" class="form-control" id="sub-secs" list="secs-list">
+							<datalist id="secs-list">
+								<option value="30">
+							</datalist>
+						</div>
+						<div class="row">
+							<div class="col-12 d-flex text-center align-items-end justify-content-center">
+								<button id="sub-timer-button" class="btn btn-success me-0">Save <i class="fa-solid fa-check"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div class="col-4 mt-5 text-end">
+			<form action="" id="team-red-form" class="team-name">
+				<label for="team-red" class="form-label">Team Red</label>
+				<div class="row">
+					<div class="col-3">
+						<button id="team-red-button" class="btn btn-success me-0 mb-3">Save <i class="fa-solid fa-check"></i></button>
+					</div>
+					<div class="col-9">
+						<input type="text" name="team-red" id="team-red" class="form-control mb-1" list="team-red-list">
+						<datalist id="team-red-list">
+							<option value="Luxembourg">
+							<option value="Belgique">
+							<option value="Québec">
+							<option value="France">
+						</datalist>
+					</div>
+				</div>
+			</form>
+
+			<div class="container d-flex justify-content-center align-items-center mb-3">
+				<div id="red-score-display" class="d-flex-col justify-content-center align-items-center">
+					<p id="team-red-display" class="text-center">-</p>
+					<div id="red-score" class="d-flex justify-content-center align-items-center">0</div>
+					<div class="container btn-container d-flex justify-content-center align-items-center">
+						<button id="red-score-minus" class="btn btn-danger col-6">-</button>
+						<button id="red-score-plus" class="btn btn-success col-6">+</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-flex justify-content-center align-items-center">
+				<button id="red-foul-minus" class="btn btn-danger">-</button>
+				<div class="fouls red-foul col-2 fouls-empty"></div>
+				<div class="fouls red-foul col-2 fouls-empty"></div>
+				<div class="fouls red-foul col-2 fouls-empty"></div>
+				<button id="red-foul-plus" class="btn btn-success">+</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row align-items-start justify-content-evenly">
+		<div class="col-2 mt-3 text-start p-0">
+			<label for="type">Type</label>
+			<select name="type" id="type" class="form-select">
+				<option value="">Vide</option>
+				<option value="Mixte">Mixte</option>
+				<option value="Comparé">Comparé</option>
+				<option value="Chanté">Chanté</option>
+			</select>
+		</div>
+		<div class="col-3 d-flex flex-column mt-3 text-start p-0">
+			<form action="" id="theme-form">
+				<label for="theme">Thème</label>
+				<textarea name="theme" id="theme" class="form-control" spellcheck="true" placeholder="taper..."></textarea>
+				<div class="btn-container mt-1">
+					<button id="theme-save" type="submit" class="btn btn-success me-0 mb-3">Save <i class="fa-solid fa-check"></i></button> 
+					<button id="theme-clear" class="btn btn-danger me-0 mb-3">Clear <i class="fa-solid fa-ban"></i></button> 
+				</div>
+			</form>
+		</div>
+		<div class="col-3 d-flex flex-column mt-3 text-end p-0">
+			<form action="" id="wayof-form">
+				<label for="wayof">A la manière de</label>
+				<input type="text" name="wayof" id="wayof" class="form-control" spellcheck="true" placeholder="taper..."></input>
+				<div class="btn-container mt-1">
+					<button id="wayof-save" type="submit" class="btn btn-success me-0 mb-3">Save <i class="fa-solid fa-check"></i></button> 
+					<button id="wayof-clear" class="btn btn-danger me-0 mb-3">Clear <i class="fa-solid fa-ban"></i></button> 
+				</div>
+			</form>
+		</div>
+		<div class="col-2 mt-3 text-end p-0">
+			<label for="players">Nb de joueurs</label>
+			<select name="players" id="players" class="form-select">
+				<option value="" selected>Vide</option>
+				<optgroup label="standard">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="Illimité">Illimité</option>
+				</optgroup>
+				<optgroup label="mixte">
+					<option value="1F / 2H">1F / 2H</option>
+					<option value="1F / 3H">1F / 3H</option>
+					<option value="2F">2F</option>
+					<option value="3F">3F</option>
+					<option value="1H">1H</option>
+					<option value="2H">2H</option>
+					<option value="3H">3H</option>
+				</optgroup>
+			</select>
+		</div>
+	</div>
+</div>
+
+<div class="row align-items-start justify-content-center p-0 m-0">
+	<div class="col-2 d-flex justify-content-center align-items-center">
+		<!-- <button id="batch-save" class="btn btn-success m-0 p-0 me-1 mb-1 col-6">Save All <i class="fa-solid fa-check"></i></button> -->
+		<button id="batch-clear" class="btn btn-danger m-0 p-0 mb-1 ms-1 col-6">Clear All <i class="fa-solid fa-ban"></i></button>
+	</div>
+</div>
+
+<div class="row align-items-start justify-content-center m-0 mt-3">
+	<div class="col-6 d-flex justify-content-center align-items-center" id="text-display">
+		<div id="theme-display"></div>
+		<div id="wayof-display"></div>
+		<div id="type-display"></div>
+		<div id="players-display"></div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display:none">
+    <button id="minus" class="btn btn-danger">-</button>
+    <span id="counter">0</span>
+    <button id="plus" class="btn btn-success">+</button>
+  </div>
+
+  <script type="module" src="/src/renderer.js"></script>
+</body>
+</html>
