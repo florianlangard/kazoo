@@ -4,13 +4,15 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: '/src/kazoo-logo'
+    icon: './src/kazoo-logo'
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+        setupIcon: './src/kazoo-logo.ico'
+      },
     },
     {
       name: '@electron-forge/maker-zip',
