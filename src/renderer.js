@@ -6,6 +6,7 @@ import "./index.css";
 
 import 'bootstrap';
 import { Notyf } from 'notyf';
+import confetti from 'canvas-confetti';
 
 let blueScore = getScore("blue") ?? 0;
 let redScore = getScore("red") ?? 0;
@@ -60,6 +61,30 @@ function showNotyf(options) {
     notyf[type](message)
   }
 }
+// =====
+
+// confetti =====
+function triggerConfetti(team) 
+  {
+    let color = team === "blue" ? "#0000ff" : "#b11414";
+    let originX = team === "blue" ? 0 : 1;
+    let end = Date.now() + (0.1 * 1000);
+      function frame() {
+      confetti({
+        particleCount: 2,
+        angle: team === "blue" ? 60 : 120,
+        spread: 50,
+        origin: { x: originX },
+        colors: ["#fff", `${color}`],
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    }
+
+    frame();
+  }
 // =====
 
 // Utilities =====
@@ -365,36 +390,44 @@ subTimerForm.addEventListener("submit", (event) => {
 teamBlueControl.forEach((button) => {
   button.addEventListener('click', (event) => {
     let action = event.target.id.split('-').pop();
+    let trigger;
     if (action == "plus") {
       blueScore++;
+      trigger = true;
       showNotyf({side: "left", message: "Blue score +"});
+      triggerConfetti("blue");
     } else {
       if (blueScore > 0) {
         blueScore--;
+        trigger = false;
         showNotyf({side: "left", message: "Blue score -"});
       }
     }
     teamBlueScore.textContent = blueScore;
     localStorage.setItem("blue-score", blueScore);
-    updateScores("blue", blueScore);
+    updateScores("blue", blueScore, trigger);
   });
 });
 
 teamRedControl.forEach((button) => {
   button.addEventListener('click', (event) => {
     let action = event.target.id.split('-').pop();
+    let trigger;
     if (action == "plus") {
       redScore++;
+      trigger = true;
+      triggerConfetti("red");
       showNotyf({side: "right", message: "Red score +"});
     } else {
       if (redScore > 0) {
         redScore--;
+        trigger = false;
         showNotyf({side: "right", message: "Red score -"});
       };
     }
     teamRedScore.textContent = redScore;
     localStorage.setItem("red-score", redScore);
-    updateScores("red", redScore);
+    updateScores("red", redScore, trigger);
   });
 });
 
@@ -408,9 +441,9 @@ function getScore(color)
   return localStorage.getItem(`${color}-score`);
 }
 
-function updateScores(teamColor, score) 
+function updateScores(teamColor, score, trigger) 
 {
-  window.electronAPI.sendScoreUpdate(teamColor, score);
+  window.electronAPI.sendScoreUpdate(teamColor, score, trigger);
 }
 // =====
 

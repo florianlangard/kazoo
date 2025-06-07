@@ -13,12 +13,12 @@ contextBridge.exposeInMainWorld('electronAPI',
   },
 
   // Scores =====
-  sendScoreUpdate: (teamColor, score) => {
-    ipcRenderer.send("update-score", teamColor, score);
+  sendScoreUpdate: (teamColor, score, trigger) => {
+    ipcRenderer.send("update-score", teamColor, score, trigger);
   },
   onScoreUpdate: (callback) => {
-    ipcRenderer.on('score-updated', (_, teamColor, score) => {
-      callback(teamColor, score);
+    ipcRenderer.on('score-updated', (_, teamColor, score, trigger) => {
+      callback(teamColor, score, trigger);
     });
   },
 

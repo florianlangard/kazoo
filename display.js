@@ -4,6 +4,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./display.css";
 
 import 'bootstrap';
+import confetti from 'canvas-confetti';
 
 const teamBlue = document.getElementById('team-blue');
 const teamRed = document.getElementById('team-red');
@@ -12,12 +13,33 @@ const teamBlueScore = document.getElementById('team-blue-score-display');
 const teamRedScore = document.getElementById('team-red-score-display');
 
 const theme = document.getElementById("theme");
-
 const wayof = document.getElementById("wayof");
-
 const type = document.getElementById("type");
-
 const players = document.getElementById("players");
+
+// confetti =====
+function triggerConfetti(team) 
+  {
+    let color = team === "blue" ? "#0000ff" : "#b11414";
+    let originX = team === "blue" ? 0 : 1;
+    let end = Date.now() + (0.1 * 1000);
+      function frame() {
+      confetti({
+        particleCount: 2,
+        angle: team === "blue" ? 60 : 120,
+        spread: 50,
+        origin: { x: originX },
+        colors: ["#fff", `${color}`],
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    }
+
+    frame();
+  }
+// =====
 
 // Utilities =====
 function pad(nb) 
@@ -86,12 +108,18 @@ function updateTeamName(teamColor, teamName) {
   }
 }
 
-function updateTeamScore(teamColor, score) {
+function updateTeamScore(teamColor, score, trigger) {
   if (teamColor == "blue") {
     teamBlueScore.textContent = score;
+    if (trigger === true) {
+      triggerConfetti("blue")
+    }
   }
   else {
     teamRedScore.textContent = score;
+    if (trigger === true) {
+      triggerConfetti("red")
+    }
   }
 }
 
@@ -135,8 +163,8 @@ window.electronAPI.onTeamUpdate((teamColor, teamName) => {
   updateTeamName(teamColor, teamName);
 });
 
-window.electronAPI.onScoreUpdate((teamColor, teamName) => {
-  updateTeamScore(teamColor, teamName);
+window.electronAPI.onScoreUpdate((teamColor, teamName, trigger) => {
+  updateTeamScore(teamColor, teamName, trigger);
 });
 
 window.electronAPI.onThemeUpdate((text) => {

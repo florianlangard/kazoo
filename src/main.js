@@ -98,9 +98,9 @@ app.whenReady().then(() => {
     }
   })
 
-  ipcMain.on('update-score', (_, teamColor, score) => {
+  ipcMain.on('update-score', (_, teamColor, score, trigger) => {
     if (displayWindow && !displayWindow.isDestroyed()) {
-      displayWindow.webContents.send('score-updated', teamColor, score);
+      displayWindow.webContents.send('score-updated', teamColor, score, trigger);
     }
   })
 
