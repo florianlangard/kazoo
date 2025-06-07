@@ -80,6 +80,9 @@ contextBridge.exposeInMainWorld('electronAPI',
 
   sendReset: () => ipcRenderer.send("app-reset"),
   onAppReset: (callback) => ipcRenderer.on("app-reset-notify", callback),
+
+  sendTriggerFirework: () => ipcRenderer.send("trigger-firework"),
+  onTriggerFirework: (callback) => ipcRenderer.on("firework-triggered", callback),
   
 
   // Getters for display.js =====

@@ -146,6 +146,12 @@ app.whenReady().then(() => {
     }
   })
 
+  ipcMain.on("trigger-firework", () => {
+    if (displayWindow && !displayWindow.isDestroyed()) {
+      displayWindow.webContents.send("firework-triggered");
+    }
+  })
+
   ipcMain.on('open-display', () => {
     createDisplayWindow();
   })
