@@ -8,14 +8,16 @@ import 'bootstrap';
 import { Notyf } from 'notyf';
 import confetti from 'canvas-confetti';
 
+// VARS =====
 let blueScore = getScore("blue") ?? 0;
 let redScore = getScore("red") ?? 0;
 
 let blueFouls = getTeamFouls("blue") ?? 0;
 let redFouls = getTeamFouls("red") ?? 0;
 
+let confettiParam = getConfettiParam();
+let switchConfetti = document.getElementById("switchConfetti");
 
-// VARS =====
 const openBtn = document.getElementById('openDisplay');
 const resetBtn = document.getElementById('resetStorage');
 
@@ -84,7 +86,13 @@ function triggerConfetti(team)
     }
 
     frame();
+
   }
+
+switchConfetti.addEventListener("change", () => {
+confettiParam = switchConfetti.checked
+localStorage.setItem("confetti", confettiParam);
+})
 // =====
 
 // Utilities =====
@@ -171,6 +179,11 @@ function initRenderData()
   let players = getPlayers();
   document.getElementById("players").value = players;
   document.getElementById("players-display").textContent = players;
+
+  if (!localStorage.getItem("confetti"))
+  {
+    localStorage.setItem("confetti", true)
+  }
 }
 
 function resetAppData()
@@ -192,6 +205,10 @@ function resetAppData()
   ["type", "theme", "wayof", "players"].forEach((item) => {
     localStorage.setItem(item, "");
   })
+  if (!localStorage.getItem("confetti"))
+  {
+    localStorage.setItem("confetti", true)
+  }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -393,9 +410,11 @@ teamBlueControl.forEach((button) => {
     let trigger;
     if (action == "plus") {
       blueScore++;
-      trigger = true;
       showNotyf({side: "left", message: "Blue score +"});
-      triggerConfetti("blue");
+      if (confettiParam) {
+        trigger = true;
+        triggerConfetti("blue");
+      }
     } else {
       if (blueScore > 0) {
         blueScore--;
@@ -415,8 +434,10 @@ teamRedControl.forEach((button) => {
     let trigger;
     if (action == "plus") {
       redScore++;
-      trigger = true;
-      triggerConfetti("red");
+      if (confettiParam) {
+        trigger = true;
+        triggerConfetti("red");
+      }
       showNotyf({side: "right", message: "Red score +"});
     } else {
       if (redScore > 0) {
@@ -621,6 +642,11 @@ players.addEventListener("change", () => {
 function getPlayers()
 {
   return localStorage.getItem("players");
+}
+
+function getConfettiParam()
+{
+  return localStorage.getItem("confetti");
 }
 
 function updatePlayers(players) 
