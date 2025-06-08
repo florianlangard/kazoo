@@ -15,11 +15,37 @@
 	<div class="container-fluid">
 		<a class="navbar-brand">Kazoo <i class="fa-solid fa-wind"></i></a>
 		<div class="d-flex">
+			<button id="firework" class="btn btn-warning">FIREWORK! <i class="fa-solid fa-bomb"></i></button>
+			<button id="settings" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">Paramètres <i class="fa-solid fa-gears"></i></button>
 			<button id="resetStorage" class="btn btn-danger">Remise à zéro <i class="fa-solid fa-ban"></i></button>
 			<button class="btn btn-outline-primary" id="openDisplay">Ouvrir Affichage <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
 		</div>
 	</div>
 </nav>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+	<div class="offcanvas-header">
+		<h5 class="offcanvas-title" id="offcanvasExampleLabel">Paramètres</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<div class="offcanvas-body">
+		<div>
+			Les paramètres ne sont pas sensibles à la remise à zéro des données. Ils ne peuvent être modifiés que par ce panneau de contrôle.
+		</div>
+		<div class="form-switch mt-5 flex justify-content-between">
+			<input class="form-check-input switch" type="checkbox" role="switch" id="switchConfetti" checked>
+			<label class="form-check-label ms-1" for="switchConfetti">Activer les animations confetti ?</label>
+		</div>
+		<div class="form-switch mt-3 flex justify-content-between">
+			<input class="form-check-input switch" type="checkbox" role="switch" id="switchFirework">
+			<label class="form-check-label ms-1" for="switchFirework">Activer le bouton FIREWORK ?</label>
+		</div>
+		<div class="form-switch mt-3 flex justify-content-between">
+			<input class="form-check-input switch" type="checkbox" role="switch" id="switchDarkMode">
+			<label class="form-check-label ms-1" for="switchDarkMode">Dark mode ?</label>
+		</div>
+	</div>
+</div>
 
 <div class="container">
 	<div class="row align-items-start">

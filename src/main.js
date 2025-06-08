@@ -98,9 +98,9 @@ app.whenReady().then(() => {
     }
   })
 
-  ipcMain.on('update-score', (_, teamColor, score) => {
+  ipcMain.on('update-score', (_, teamColor, score, trigger) => {
     if (displayWindow && !displayWindow.isDestroyed()) {
-      displayWindow.webContents.send('score-updated', teamColor, score);
+      displayWindow.webContents.send('score-updated', teamColor, score, trigger);
     }
   })
 
@@ -143,6 +143,12 @@ app.whenReady().then(() => {
   ipcMain.on("timer-update", (_, timer, timeInSec) => {
     if (displayWindow && !displayWindow.isDestroyed()) {
       displayWindow.webContents.send("timer-update", timer, timeInSec);
+    }
+  })
+
+  ipcMain.on("trigger-firework", () => {
+    if (displayWindow && !displayWindow.isDestroyed()) {
+      displayWindow.webContents.send("firework-triggered");
     }
   })
 

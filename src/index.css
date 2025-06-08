@@ -178,6 +178,11 @@ p {
     font-size: 0.8em;
 }
 
+input.switch {
+    transform: scale(1.5);
+    margin-right: 16px;
+}
+
 button {
     margin-right: 4px;
     margin-left: 4px;

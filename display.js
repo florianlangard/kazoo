@@ -4,6 +4,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./display.css";
 
 import 'bootstrap';
+import confetti from 'canvas-confetti';
 
 const teamBlue = document.getElementById('team-blue');
 const teamRed = document.getElementById('team-red');
@@ -12,12 +13,56 @@ const teamBlueScore = document.getElementById('team-blue-score-display');
 const teamRedScore = document.getElementById('team-red-score-display');
 
 const theme = document.getElementById("theme");
-
 const wayof = document.getElementById("wayof");
-
 const type = document.getElementById("type");
-
 const players = document.getElementById("players");
+
+// confetti =====
+function triggerConfetti(team) 
+{
+  let color = team === "blue" ? "#0000ff" : "#b11414";
+  let originX = team === "blue" ? 0 : 1;
+  // let end = Date.now() + (0.1 * 1000);
+    function frame() {
+    confetti({
+      particleCount: 80,
+      angle: team === "blue" ? 60 : 120,
+      spread: 50,
+      origin: { x: originX },
+      colors: ["#fff", `${color}`],
+    });
+
+    // if (Date.now() < end) {
+    //   requestAnimationFrame(frame);
+    // }
+  }
+
+  frame();
+}
+
+function firework() 
+{
+  let duration = 8 * 1000;
+  let animationEnd = Date.now() + duration;
+  let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+  function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  let interval = setInterval(function() {
+    let timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    let particleCount = 50 * (timeLeft / duration);
+    confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+    confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+  }, 250);
+}
+// =====
 
 // Utilities =====
 function pad(nb) 
@@ -86,12 +131,18 @@ function updateTeamName(teamColor, teamName) {
   }
 }
 
-function updateTeamScore(teamColor, score) {
+function updateTeamScore(teamColor, score, trigger) {
   if (teamColor == "blue") {
     teamBlueScore.textContent = score;
+    if (trigger === true) {
+      triggerConfetti("blue")
+    }
   }
   else {
     teamRedScore.textContent = score;
+    if (trigger === true) {
+      triggerConfetti("red")
+    }
   }
 }
 
@@ -135,8 +186,8 @@ window.electronAPI.onTeamUpdate((teamColor, teamName) => {
   updateTeamName(teamColor, teamName);
 });
 
-window.electronAPI.onScoreUpdate((teamColor, teamName) => {
-  updateTeamScore(teamColor, teamName);
+window.electronAPI.onScoreUpdate((teamColor, teamName, trigger) => {
+  updateTeamScore(teamColor, teamName, trigger);
 });
 
 window.electronAPI.onThemeUpdate((text) => {
@@ -161,4 +212,8 @@ window.electronAPI.onTimerSet((timer, timeInSec) => {
 
 window.electronAPI.onTimerUpdate(( timer, timeInSec ) => {
   updateTimerDisplay(timer, timeInSec)
+});
+
+window.electronAPI.onTriggerFirework(() => {
+  firework();
 });

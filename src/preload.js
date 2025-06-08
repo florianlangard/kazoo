@@ -13,12 +13,12 @@ contextBridge.exposeInMainWorld('electronAPI',
   },
 
   // Scores =====
-  sendScoreUpdate: (teamColor, score) => {
-    ipcRenderer.send("update-score", teamColor, score);
+  sendScoreUpdate: (teamColor, score, trigger) => {
+    ipcRenderer.send("update-score", teamColor, score, trigger);
   },
   onScoreUpdate: (callback) => {
-    ipcRenderer.on('score-updated', (_, teamColor, score) => {
-      callback(teamColor, score);
+    ipcRenderer.on('score-updated', (_, teamColor, score, trigger) => {
+      callback(teamColor, score, trigger);
     });
   },
 
@@ -80,6 +80,9 @@ contextBridge.exposeInMainWorld('electronAPI',
 
   sendReset: () => ipcRenderer.send("app-reset"),
   onAppReset: (callback) => ipcRenderer.on("app-reset-notify", callback),
+
+  sendTriggerFirework: () => ipcRenderer.send("trigger-firework"),
+  onTriggerFirework: (callback) => ipcRenderer.on("firework-triggered", callback),
   
 
   // Getters for display.js =====
