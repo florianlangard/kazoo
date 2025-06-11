@@ -110,8 +110,10 @@ function initRenderData()
   document.getElementById("theme").textContent = window.electronAPI.getTheme();
   const wayofDisplay = window.electronAPI.getWayof();
   document.getElementById("wayof").textContent = wayofDisplay ? `À la manière de : ${wayofDisplay}` : "";
-  document.getElementById("type").textContent = window.electronAPI.getType();
-  document.getElementById("players").textContent = window.electronAPI.getPlayers();
+  const typeDisplay = window.electronAPI.getType();
+  document.getElementById("type").textContent = typeDisplay ? `Impro. ${typeDisplay}` : "";
+  const playersDisplay = window.electronAPI.getPlayers();
+  document.getElementById("players").textContent = playersDisplay ? `Nb de joueurs : ${playersDisplay}` : "";
 }
 
 window.electronAPI.onAppReset(() => {
@@ -155,11 +157,11 @@ function updateWayof(text) {
 }
 
 function updateType(text) {
-  type.textContent = text;
+  type.textContent = text ? "Impro. " + text : "";
 }
 
 function updatePlayers(text) {
-  players.textContent = text;
+  players.textContent = text ? "Nb de joueurs : " + text : "";
 }
 
 function updateTimerDisplay(timerId, timeInSec) {

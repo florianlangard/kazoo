@@ -207,11 +207,11 @@ function initRenderData()
 
   let type = getType();
   document.getElementById("type").value = type;
-  document.getElementById("type-display").textContent = type;
+  document.getElementById("type-display").textContent = type ? "Impro. " + type : "";
 
   let players = getPlayers();
   document.getElementById("players").value = players;
-  document.getElementById("players-display").textContent = players;
+  document.getElementById("players-display").textContent = players ? "nb de joueurs : " + players : "";
 
   if (!localStorage.getItem("confetti"))
   {
@@ -649,7 +649,7 @@ batchClear.addEventListener("click", () => {
 // Type =====
 type.addEventListener("change", () => {
   const typeDisplay = document.getElementById("type-display");
-  typeDisplay.textContent = type.value;
+  typeDisplay.textContent = type.value != "" ? "Impro. " + type.value : "";
   updateType(type.value);
 })
 
@@ -668,7 +668,7 @@ function updateType(type)
 // Players =====
 players.addEventListener("change", () => {
   const playersDisplay = document.getElementById("players-display");
-  playersDisplay.textContent = players != "" ? players.value /*+ " jouteur(s)"*/ : "";
+  playersDisplay.textContent = players.value != "" ? "nb de joueurs : " + players.value : "";
   updatePlayers(players.value);
 })
 
