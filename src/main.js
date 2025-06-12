@@ -1,7 +1,7 @@
 import { app, BrowserWindow, ipcMain, screen } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
-// const { updateElectronApp } = require('update-electron-app');
+const { updateElectronApp } = require('update-electron-app');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
@@ -10,6 +10,11 @@ if (started) {
 
 let mainWindow = null;
 let displayWindow = null;
+
+updateElectronApp({
+  updateInterval: '5 minutes',
+  logger: require('electron-log')
+})
 
 const createMainWindow = () => {
   // Create the browser window.

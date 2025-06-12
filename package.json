@@ -1,7 +1,7 @@
 {
   "name": "kazoo",
   "productName": "kazoo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "kazoo, reforged with electron.js",
   "main": ".vite/build/main.js",
   "scripts": {
@@ -40,6 +40,7 @@
     "bootstrap": "^5.3.6",
     "canvas-confetti": "^1.9.3",
     "electron-squirrel-startup": "^1.0.1",
-    "notyf": "^3.10.0"
+    "notyf": "^3.10.0",
+    "update-electron-app": "^3.1.1"
   }
 }
