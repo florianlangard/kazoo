@@ -13,7 +13,6 @@ let displayWindow = null;
 
 updateElectronApp({
   updateInterval: '5 minutes',
-  logger: require('electron-log')
 })
 
 const createMainWindow = () => {
