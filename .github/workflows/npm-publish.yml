@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
@@ -23,5 +26,5 @@ jobs:
 
       - name: Make and Publish Windows App
         env:
-          GITHUB_TOKEN: ${{ secrets.KAZOO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx electron-forge publish

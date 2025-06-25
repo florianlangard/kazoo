@@ -24,3 +24,13 @@ publish a new release with github actions :
 git tag vX.X.X
 git push origin vX.X.X
 ```
+
+delete local tag :
+```bash
+git tag -d vX.X.X
+```
+
+delete remote tag :
+```bash
+git push origin --delete tag vX.X.X
+```
