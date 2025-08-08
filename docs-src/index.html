@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.scss">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Kazoo</title>
+</head>
+<body>
+        <!-- spotlight top left -->
+        <svg class="spotlight spotlight-topleft" viewBox="0 0 7 9" xmlns="http://www.w3.org/2000/svg">
+            <path d="M -1 -1 L 9 9 L 0 9 Z" fill="url(#grad-topleft)" />
+            <defs>
+                <linearGradient id="grad-topleft" x1="-1" y1="-1" x2="0" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="rgba(255,255,200,0.35)" />
+                    <stop offset="100%" stop-color="rgba(255,255,200,0)" />
+                </linearGradient>
+            </defs>
+        </svg>
+        <!-- spotlight top right -->
+        <svg class="spotlight spotlight-topright" viewBox="0 0 5 9" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 7 -1 L -3 9 L 6 9 Z" fill="url(#grad-topright)" />
+            <defs>
+                <linearGradient id="grad-topright" x1="7" y1="-1" x2="6" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="rgba(255,255,200,0.35)" />
+                    <stop offset="100%" stop-color="rgba(255,255,200,0)" />
+                </linearGradient>
+            </defs>
+        </svg>
+
+    <div class="container">
+        <h1>Kazoo</h1>
+        <p class="version" id="appVersion"></p>
+        <div class="description">
+            <p>A digital scoreboard for theatrical improv competitions. It lets you display team scores in real time — perfect for live performances.</p>
+            <p><i class="fa-solid fa-circle-exclamation" style="color:darkorange; font-size: 1.5em;"></i> This application is not digitally signed. When installing, Windows may show a SmartScreen warning. To continue, click "More info" and then "Run anyway".</p>
+        </div>
+        <div class="btn-container">
+            <a class="btn btn-alt" id="githubBtn" href="https://github.com/florianlangard/kazoo">See on Github <i class="fa-brands fa-github"></i></a>
+            <a class="btn" id="downloadBtn" href="#">Download app <span style="font-size: 0.8em;">Windows </span><i class="fa-brands fa-windows"></i> <i class="fa-solid fa-download"></i></a>
+        </div>
+        <div id="decor-pat">
+            <div id="top-decor"></div>
+            <div id="bottom-decor"></div>
+        </div>
+        <footer>Made with <i class="fa-solid fa-heart"></i> and <i class="fa-solid fa-mug-hot"></i>, obviously.</footer>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
