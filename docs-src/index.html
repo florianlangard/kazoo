@@ -34,14 +34,18 @@
 
     <div class="container">
         <h1>Kazoo</h1>
+        <select id="langSelector">
+            <option value="en">🇺🇸 English</option>
+            <option value="fr">🇫🇷 Français</option>
+        </select>
         <p class="version" id="appVersion"></p>
         <div class="description">
-            <p>A digital scoreboard for theatrical improv competitions. It lets you display team scores in real time — perfect for live performances.</p>
-            <p><i class="fa-solid fa-circle-exclamation" style="color:darkorange; font-size: 1.5em;"></i> This application is not digitally signed. When installing, Windows may show a SmartScreen warning. To continue, click "More info" and then "Run anyway".</p>
+            <p><span data-i18n="description"></span></p>
+            <p><i class="fa-solid fa-circle-exclamation" style="color:darkorange; font-size: 1.5em;"></i> <span data-i18n="smartscreen"></span></p>
         </div>
         <div class="btn-container">
-            <a class="btn btn-alt" id="githubBtn" href="https://github.com/florianlangard/kazoo">See on Github <i class="fa-brands fa-github"></i></a>
-            <a class="btn" id="downloadBtn" href="#">Download app <span style="font-size: 0.8em;">Windows </span><i class="fa-brands fa-windows"></i> <i class="fa-solid fa-download"></i></a>
+            <a class="btn btn-alt" id="githubBtn" href="https://github.com/florianlangard/kazoo"><span data-i18n="github"></span>  <i class="fa-brands fa-github"></i></a>
+            <a class="btn" id="downloadBtn" href="#"><span data-i18n="download"></span> <span style="font-size: 0.8em;">- Windows </span><i class="fa-brands fa-windows"></i> <i class="fa-solid fa-download"></i></a>
         </div>
         <div id="decor-pat">
             <div id="top-decor"></div>
