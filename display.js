@@ -4,7 +4,10 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./display.css";
 
 import 'bootstrap';
-import confetti from 'canvas-confetti';
+
+import * as utils from './src/common/utils.js';
+
+// ===== Vars =====
 
 const teamBlue = document.getElementById('team-blue');
 const teamRed = document.getElementById('team-red');
@@ -17,64 +20,7 @@ const wayof = document.getElementById("wayof");
 const type = document.getElementById("type");
 const players = document.getElementById("players");
 
-// confetti =====
-function triggerConfetti(team) 
-{
-  let color = team === "blue" ? "#0000ff" : "#b11414";
-  let originX = team === "blue" ? 0 : 1;
-  // let end = Date.now() + (0.1 * 1000);
-    function frame() {
-    confetti({
-      particleCount: 80,
-      angle: team === "blue" ? 60 : 120,
-      spread: 50,
-      origin: { x: originX },
-      colors: ["#fff", `${color}`],
-    });
-
-    // if (Date.now() < end) {
-    //   requestAnimationFrame(frame);
-    // }
-  }
-
-  frame();
-}
-
-function firework() 
-{
-  let duration = 8 * 1000;
-  let animationEnd = Date.now() + duration;
-  let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-  function randomInRange(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  let interval = setInterval(function() {
-    let timeLeft = animationEnd - Date.now();
-
-    if (timeLeft <= 0) {
-      return clearInterval(interval);
-    }
-
-    let particleCount = 50 * (timeLeft / duration);
-    confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
-    confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
-  }, 250);
-}
-// =====
-
-// Utilities =====
-function pad(nb) 
-{
-  if (nb == 0) {
-    return "00"
-  }
-  if (nb <= 9) {
-    nb = "0" + nb;
-  }
-  return nb;
-}
+// ==========
 
 function initRenderData()
 {
@@ -104,7 +50,7 @@ function initRenderData()
     const value = window.electronAPI.getTimer(timer);
     const mins = Math.floor(value / 60);
     const secs = value % 60;
-    document.getElementById(`${timer}-timer`).textContent = `${pad(mins)}:${pad(secs)}`;
+    document.getElementById(`${timer}-timer`).textContent = `${utils.pad(mins)}:${utils.pad(secs)}`;
   });
 
   document.getElementById("theme").textContent = window.electronAPI.getTheme();
@@ -137,13 +83,13 @@ function updateTeamScore(teamColor, score, trigger) {
   if (teamColor == "blue") {
     teamBlueScore.textContent = score;
     if (trigger === true) {
-      triggerConfetti("blue")
+      utils.triggerConfetti("blue")
     }
   }
   else {
     teamRedScore.textContent = score;
     if (trigger === true) {
-      triggerConfetti("red")
+      utils.triggerConfetti("red")
     }
   }
 }
@@ -168,7 +114,7 @@ function updateTimerDisplay(timerId, timeInSec) {
   const timerRender = document.getElementById(`${timerId}-timer`);
   let mins = Math.floor(timeInSec / 60);
   let secs = timeInSec % 60;
-  timerRender.textContent = pad(mins) + ":" + pad(secs);
+  timerRender.textContent = utils.pad(mins) + ":" + utils.pad(secs);
 }
 
 window.electronAPI.onFoulUpdate((team, count) => {
@@ -217,5 +163,5 @@ window.electronAPI.onTimerUpdate(( timer, timeInSec ) => {
 });
 
 window.electronAPI.onTriggerFirework(() => {
-  firework();
+  utils.firework();
 });

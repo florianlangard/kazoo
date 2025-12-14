@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, screen } from 'electron';
+import { app, BrowserWindow, ipcMain, screen, session } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
 import { updateElectronApp } from 'update-electron-app';
@@ -79,9 +79,17 @@ function createDisplayWindow() {
 }
 
 app.whenReady().then(() => {
-  // updateElectronApp();
+// Set Content-Security-Policy to allow only scripts from self
+//   session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+//   callback({
+//     responseHeaders: {
+//       ...details.responseHeaders,
+//       'Content-Security-Policy': ['script-src \'self\'']
+//     }
+//   })
+// })
+
   createMainWindow();
-  // createDisplayWindow();
 
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
